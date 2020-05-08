@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestHandlerFunc(t *testing.T) {
+func TestTestingHandlerFunc(t *testing.T) {
 	handler := http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
 		// check request
 		assert.Equal(t, "host:80", r.Host)
