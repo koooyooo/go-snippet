@@ -10,6 +10,8 @@ import (
 )
 
 func TestTestingGinFuncOfCtxWriter(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+
 	// Prepare test target
 	target := func(c *gin.Context) {
 		c.Writer.WriteHeader(http.StatusOK)
@@ -28,6 +30,8 @@ func TestTestingGinFuncOfCtxWriter(t *testing.T) {
 }
 
 func TestTestingGinFuncOfCtxJSON(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+
 	// Prepare test target
 	target := func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
