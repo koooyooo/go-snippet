@@ -11,8 +11,6 @@ import (
 
 func TestForm(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
-		//b, _ := ioutil.ReadAll(r.Body)
-		//fmt.Println(string(b))
 		e := r.ParseForm()
 		if e != nil {
 			panic(e)
