@@ -9,7 +9,10 @@ import (
 
 func TestHandlerFunc(t *testing.T) {
 	handler := http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
+		// check request
 		assert.Equal(t, "host:80", r.Host)
+
+		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Hello Body"))
 	})
 	w := httptest.NewRecorder()
@@ -17,5 +20,7 @@ func TestHandlerFunc(t *testing.T) {
 
 	handler.ServeHTTP(w, r)
 
+	// assert response
+	assert.Equal(t, http.StatusOK, w.Code)
 	assert.Equal(t, "Hello Body", w.Body.String())
 }
