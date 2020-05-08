@@ -43,7 +43,7 @@ func TestGinFuncOfCtxJSON(t *testing.T) {
 	assert.Equal(t, `{"Hello":"Gin"}`, w.Body.String())
 }
 
-func TestDo(t *testing.T) {
+func TestServerWithGin(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 
 	router := gin.Default()
@@ -54,15 +54,18 @@ func TestDo(t *testing.T) {
 	// Don't call Run server this time
 	// router.Run(":8080")
 
+	// build test server with gin.Router
 	ts := httptest.NewServer(router)
 	defer ts.Close()
 
+	// build real request & call
 	req, err := http.NewRequest("GET", ts.URL + "/path", nil)
 	assert.Nil(t, err)
 
 	resp, err := http.DefaultClient.Do(req)
 	assert.Nil(t, err)
 
+	// check response from test server
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	assert.Nil(t, err)
