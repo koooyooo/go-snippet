@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestGinFuncOfCtxWriter(t *testing.T) {
+func TestTestingGinFuncOfCtxWriter(t *testing.T) {
 	// Prepare test target
 	target := func(c *gin.Context) {
 		c.Writer.WriteHeader(http.StatusOK)
@@ -27,7 +27,7 @@ func TestGinFuncOfCtxWriter(t *testing.T) {
 	assert.Equal(t, "Hello Gin", w.Body.String())
 }
 
-func TestGinFuncOfCtxJSON(t *testing.T) {
+func TestTestingGinFuncOfCtxJSON(t *testing.T) {
 	// Prepare test target
 	target := func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -43,7 +43,7 @@ func TestGinFuncOfCtxJSON(t *testing.T) {
 	assert.Equal(t, `{"Hello":"Gin"}`, w.Body.String())
 }
 
-func TestServerWithGin(t *testing.T) {
+func TestTestingGinServer(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 
 	router := gin.Default()
@@ -71,3 +71,4 @@ func TestServerWithGin(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, "Hello", string(bodyBytes))
 }
+
